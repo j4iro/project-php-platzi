@@ -18,9 +18,11 @@
 
 <body>
   <div class="container">
+
+  <!-- Header -->
     <div id="resume-header" class="row">
       <div class="col-3">
-        <img class="shadow-sm rounded" id="profile-picture" src="https://ui-avatars.com/api/?name=Jairo+Lachira&size=255&bold=true&background=206466&color=fff" alt="">
+        <img class="shadow-sm rounded" id="profile-picture" src="https://ui-avatars.com/api/?name=Jairo+Lachira&size=255&bold=true&background=206466&color=fff" alt="Jairo Lachira">
       </div>
       <div class="col">
         <h1><?php echo $name; ?></h1>
@@ -33,6 +35,9 @@
         </ul>
       </div>
     </div>
+  <!-- Header -->
+
+  <!-- Carrera -->
     <div class="row">
       <div class="col">
         <h2 class="border-bottom-gray" >Carrer Summary</h2>
@@ -42,66 +47,48 @@
         </p>
       </div>
     </div>
+    <!-- Fin de la carrera -->
+
+    <!-- Row -->
     <div class="row">
-      <div class="col">
+      <div class="col-9">
+      <!-- Experiencia -->
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
+            <?php
+              $size = count($jobs);
+              $totalMonths = 0;
 
-          <?php
+              for($i = 0; $i<$size ; $i++ ){
+                  $totalMonths += $jobs[$i]->getMonths();
 
-          $size = count($jobs);
-          $totalMonths = 0;
+                  if ($totalMonths>$limitMonths){
+                    break;
+                  }
 
-          for($idx = 0; $idx<$size ; $idx++ ){
-              $totalMonths += $jobs[$idx]->getMonths();
-
-              if ($totalMonths>$limitMonths) 
-              {
-                break;
+                  printElement($jobs[$i]);
               }
-
-              printJob($jobs[$idx]);
-            
-          }
-          ?>
-
+            ?>
           </ul>
         </div>
+        <!-- Fin Experiencia -->
+
+      <!-- Projects -->
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
-            <div class="project">
-                <h5>Project X</h5>
-                <div class="row">
-                    <div class="col-3">
-                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
-                      </div>
-                      <div class="col">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
-                        <strong>Technologies used:</strong>
-                        <span class="badge badge-secondary">PHP</span>
-                        <span class="badge badge-secondary">HTML</span>
-                        <span class="badge badge-secondary">CSS</span>
-                      </div>
-                </div>
-            </div>
-            <div class="project">
-                <h5>Project X</h5>
-                <div class="row">
-                    <div class="col-3">
-                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
-                      </div>
-                      <div class="col">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
-                        <strong>Technologies used:</strong>
-                        <span class="badge badge-secondary">PHP</span>
-                        <span class="badge badge-secondary">HTML</span>
-                        <span class="badge badge-secondary">CSS</span>
-                      </div>
-                </div>
-            </div>
-          </div>
+            <?php
+            $size = count($projects);
+
+            for($i = 0; $i<$size ; $i++ ){
+                printElement($projects[$i]);
+            }
+          ?>
+        </div>
+      <!-- Fin Projects -->
       </div>
+
+    <!-- Skills -->
       <div class="col-3">
         <h3 class="border-bottom-gray" >Skills & Tools</h3>
         <h4>Backend</h4>
@@ -124,12 +111,18 @@
           <li>English</li>
         </ul>
       </div>
+    <!--Fin Skills -->
+
     </div>
+    <!-- Fin Row -->
+    
+    <!-- Footer -->
     <div id="resume-footer" class="row">
       <div class="col">
           Designed by @hectorbenitez
       </div>
     </div>
+    <!-- Fin Footer -->
   </div>
 
 
