@@ -1,9 +1,12 @@
 <?php
+namespace App\Models;
 
-class BaseElement
+require_once 'Printable.php';
+
+class BaseElement implements Printable
 {
     protected $title;
-    private $description;
+    public $description;
     public  $visible = true;
     public $months;
 

@@ -1,6 +1,7 @@
 <?php
-
+namespace App\Models;
 require_once 'BaseElement.php';
+
 
 class Job extends BaseElement 
 {
@@ -9,6 +10,11 @@ class Job extends BaseElement
         // parent::__construct($title, $description);
         $newTitle = "Titulo Modificado: " . $title;
         $this->title = $newTitle;
+    }
+
+    public function getDescription()
+    {
+      return $this->description;
     }
 
     function getDurationAsString()
