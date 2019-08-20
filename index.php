@@ -1,4 +1,27 @@
 <?php
+  require_once 'vendor/autoload.php';
+  use Illuminate\Database\Capsule\Manager as Capsule;
+  use App\Models\Job;
+  
+  $capsule = new Capsule;
+  
+  $capsule->addConnection([
+      'driver'    => 'mysql',
+      'host'      => 'localhost:3309',
+      'database'  => 'cursophp2',
+      'username'  => 'root',
+      'password'  => '',
+      'charset'   => 'utf8',
+      'collation' => 'utf8_unicode_ci',
+      'prefix'    => '',
+  ]);
+
+  // Nos permite hacer todo como si estuvieramos en el contexto global
+  $capsule->setAsGlobal();
+
+  // Nos permite inicializar eloquent
+  $capsule->bootEloquent();
+
   require_once 'jobs.php';
 
   $name = 'Jairo Lachira';
@@ -61,7 +84,7 @@
               $totalMonths = 0;
 
               for($i = 0; $i<$size ; $i++ ){
-                  $totalMonths += $jobs[$i]->getMonths();
+                  $totalMonths += $jobs[$i]->months;
 
                   if ($totalMonths>$limitMonths){
                     break;

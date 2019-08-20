@@ -1,45 +1,30 @@
 <?php
-require_once 'vendor/autoload.php';
-use App\Models\{Job,Project, Printable};
+
+use App\Models\{Job,Project,};
 
 // require_once 'app/Models/Job.php';
 // require_once 'app/Models/Project.php';
 // require_once 'app/Models/Printable.php';
 // require 'lib1/Project.php';
 
-$job1 = new Job("PHP Developer","This is an hard job but very funnie");
-$job1->setMonths(16);
-
-$job2 = new Job("Python Developer","This is an hard job but very funnie");
-$job2->setMonths(24);
-
-$job3 = new Job("","This is an hard job but very funnie");
-$job3->setMonths(21);
+$jobs = Job::all();
 
 $project1 = new Project('Project 1','Description 1');
-$project1->setMonths(50);
-
-
-$jobs = [
-  $job1,
-  $job2,
-  $job3
-  ];
 
 $projects =[
   $project1
 ];
 
-function printElement(Printable $job)
+function printElement( $job)
 {
-  if($job->getVisible()== false)
-  {
-    return ; 
-  }
+  // if($job->getVisible()== false)
+  // {
+  //   return ; 
+  // }
 
   echo '<li class="work-position">';
-  echo '<h5>'. $job->getTitle() .'</h5>';
-  echo '<p>'. $job->getDescription() .'</p>';
+  echo '<h5>'. $job->title .'</h5>';
+  echo '<p>'. $job->description .'</p>';
   // echo '<p>'. $totalMonths .'</p>';
   echo '<p>'. $job->getDurationAsString() .'</p>';
   echo '<strong>Achievements:</strong>';
