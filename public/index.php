@@ -26,12 +26,23 @@ $capsule->setAsGlobal();
 
 // Nos permite inicializar eloquent
 $capsule->bootEloquent();
-echo $route = $_GET['route'] ?? '/';
 
-if($route='/')
-{
-    require '../index.php';
-}
-else if ($route=='addJob'){
-    require '../addJob.php';
-}
+$request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
+    $_SERVER,
+    $_GET,
+    $_POST,
+    $_COOKIE,
+    $_FILES
+);
+
+var_dump($request->getUri()->getPath());
+
+// $route = $_GET['route'] ?? '/';
+
+// if($route='/')
+// {
+//     require '../index.php';
+// }
+// else if ($route=='addJob'){
+//     require '../addJob.php';
+// }
